@@ -33,6 +33,7 @@ const App: Component = () => {
   const [height, setHeight]: Signal<{[index: number]: number}> = createSignal({});
   const resetArray = () => {
     setArray(generateArray())
+    setColor({})
   };
 
   const mergeSort = () => {
@@ -67,11 +68,6 @@ const App: Component = () => {
       setTimeout(() => {
         setColor(animations[i].colors)
         setArray(animations[i].array)
-        if(i === animations.length - 1) {
-          setTimeout(() => {
-            setColor({})
-          }, ANIMATION_SPEED_MS)
-        }
       }, ANIMATION_SPEED_MS * i)
     }
   }
