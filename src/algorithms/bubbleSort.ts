@@ -5,7 +5,7 @@ type Animation = {
 
 const PRIMARY_COLOR = 'red'
 const SECONDARY_COLOR = 'blue'
-const SORTED_COLOR = 'green'
+const SORTED_COLOR = 'purple'
 
 const bubbleSort = (array: number[]): Animation[] => {
   let animations: Animation[] = []

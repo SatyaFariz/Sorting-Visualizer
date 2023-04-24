@@ -2,6 +2,7 @@ import type { Component, Signal } from 'solid-js';
 import { createSignal, Index } from 'solid-js';
 import {getMergeSortAnimations} from './algorithms/mergeSort';
 import bubbleSort from './algorithms/bubbleSort'
+import insertionSort from './algorithms/insertionSort'
 
 import styles from './App.module.css';
 
@@ -72,12 +73,24 @@ const App: Component = () => {
     }
   }
 
+  const animateInsertionSort = () => {
+    const animations = insertionSort(array())
+    for(let i = 0; i < animations.length; i++) {
+      setTimeout(() => {
+        setColor(animations[i].colors)
+        if(animations[i].array)
+          setArray(animations[i].array as number[])
+      }, ANIMATION_SPEED_MS * i)
+    }
+  }
+
   return (
     <div>
       <div class={styles.header}>
         <button onClick={resetArray}>Generate new array</button>
         <button onClick={mergeSort}>Merge Sort</button>
         <button onClick={animateBubbleSort}>Bubble Sort</button>
+        <button onClick={animateInsertionSort}>Insertion Sort</button>
       </div>
       <div class={styles.bars}>
         <Index each={array()}>{(num, i) =>
