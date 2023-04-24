@@ -5,8 +5,8 @@ import bubbleSort from './algorithms/bubbleSort'
 
 import styles from './App.module.css';
 
-const NUMBER_OF_BARS = 5;
-const ANIMATION_SPEED_MS = 1000;
+const NUMBER_OF_BARS = 100;
+const ANIMATION_SPEED_MS = 10;
 // This is the main color of the array bars.
 const PRIMARY_COLOR = 'turquoise';
 
