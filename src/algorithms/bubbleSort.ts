@@ -22,6 +22,10 @@ const bubbleSort = (array: number[]): Animation[] => {
       })
       if(j === array.length - i - 2) {
           sorted[array.length - 1 - i] = SORTED_COLOR
+          if(j === 0) {
+            sorted[0] = SORTED_COLOR
+            sorted[1] = SORTED_COLOR
+          }
       }
       if(array[j] > array[j + 1]) {
         const temp = array[j]
@@ -36,18 +40,14 @@ const bubbleSort = (array: number[]): Animation[] => {
           },
           array: array.slice()
         })
+      } else if(sorted[0]) {
+        animations.push({
+          colors: sorted,
+          array: array.slice()
+        })
       }
     }
   }
-
-  animations.push({
-    colors: {
-      [0]: SORTED_COLOR,
-      [1]: SORTED_COLOR,
-      ...sorted
-    },
-    array: array.slice()
-  })
 
   return animations
 }

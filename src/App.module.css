@@ -7,5 +7,5 @@
 }
 
 .bar {
-  @apply bg-slate-300 w-[5px]
+  @apply bg-slate-300 w-[50px]
 }
