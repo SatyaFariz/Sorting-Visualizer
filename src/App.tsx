@@ -36,16 +36,24 @@ const App: Component = () => {
   const [array, setArray]: Signal<number[]> = createSignal(generateArray());
   const [color, setColor]: Signal<ColorMap> = createSignal({});
   const [isAnimating, setIsAnimating]: Signal<boolean> = createSignal(false)
+  const [isSorted, setIsSorted]: Signal<boolean> = createSignal(false)
 
   const resetArray = () => {
     if(!isAnimating()) {
+      setIsSorted(false)
       setArray(generateArray())
       setColor({})
     }
   };
 
+  const alertIfSorted = () => {
+    if(isSorted()) alert('Array is already sorted!')
+  }
+
   const animateBubbleSort = () => {
-    if(!isAnimating()) {
+    alertIfSorted()
+
+    if(!isAnimating() && !isSorted()) {
       setIsAnimating(true)
       const animations = bubbleSort(array())
       for(let i = 0; i < animations.length; i++) {
@@ -54,14 +62,19 @@ const App: Component = () => {
           if(animations[i].array)
             setArray(animations[i].array as number[])
 
-          if(i === animations.length - 1) setIsAnimating(false)
+          if(i === animations.length - 1) {
+            setIsAnimating(false)
+            setIsSorted(true)
+          }
         }, ANIMATION_SPEED_MS * i)
       }
     }
   }
 
   const animateInsertionSort = () => {
-    if(!isAnimating()) {
+    alertIfSorted()
+
+    if(!isAnimating() && !isSorted()) {
       setIsAnimating(true)
       const animations = insertionSort(array())
       for(let i = 0; i < animations.length; i++) {
@@ -70,14 +83,19 @@ const App: Component = () => {
           if(animations[i].array)
             setArray(animations[i].array as number[])
           
-          if(i === animations.length - 1) setIsAnimating(false)
+          if(i === animations.length - 1) {
+            setIsAnimating(false)
+            setIsSorted(true)
+          }
         }, ANIMATION_SPEED_MS * i)
       }
     }
   }
 
   const animateSelectionSort = () => {
-    if(!isAnimating()) {
+    alertIfSorted()
+
+    if(!isAnimating() && !isSorted()) {
       setIsAnimating(true)
       const animations = selectionSort(array())
       for(let i = 0; i < animations.length; i++) {
@@ -86,14 +104,19 @@ const App: Component = () => {
           if(animations[i].array)
             setArray(animations[i].array as number[])
           
-          if(i === animations.length - 1) setIsAnimating(false)
+          if(i === animations.length - 1) {
+            setIsAnimating(false)
+            setIsSorted(true)
+          }
         }, ANIMATION_SPEED_MS * i)
       }
     }
   }
 
   const animateQuickSort = () => {
-    if(!isAnimating()) {
+    alertIfSorted()
+
+    if(!isAnimating() && !isSorted()) {
       setIsAnimating(true)
       const animations = quickSort(array())
       for(let i = 0; i < animations.length; i++) {
@@ -102,7 +125,10 @@ const App: Component = () => {
           if(animations[i].array)
             setArray(animations[i].array as number[])
 
-          if(i === animations.length - 1) setIsAnimating(false)
+          if(i === animations.length - 1) {
+            setIsAnimating(false)
+            setIsSorted(true)
+          }
         }, ANIMATION_SPEED_MS * i)
       }
     }
@@ -111,11 +137,14 @@ const App: Component = () => {
   return (
     <div>
       <div class={styles.header}>
-        <button onClick={resetArray}>Generate new array</button>
-        <button onClick={animateBubbleSort}>Bubble Sort</button>
-        <button onClick={animateInsertionSort}>Insertion Sort</button>
-        <button onClick={animateSelectionSort}>Selection Sort</button>
-        <button onClick={animateQuickSort}>Quick Sort</button>
+        <div>Sorting Visualizer</div>
+        <div class={styles.buttons}>
+          <button onClick={resetArray}>Generate New Array</button>
+          <button onClick={animateBubbleSort}>Bubble Sort</button>
+          <button onClick={animateInsertionSort}>Insertion Sort</button>
+          <button onClick={animateSelectionSort}>Selection Sort</button>
+          <button onClick={animateQuickSort}>Quick Sort</button>
+        </div>
       </div>
       <div class={styles.bars}>
         <Index each={array()}>{(num, i) =>

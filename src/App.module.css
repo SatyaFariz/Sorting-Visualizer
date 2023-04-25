@@ -1,5 +1,5 @@
 .header {
-  @apply h-[100px] bg-[#37475A] text-white flex items-center
+  @apply h-[100px] bg-[#37475A] text-white flex items-center justify-between px-8
 }
 
 .bars {
@@ -8,4 +8,8 @@
 
 .bar {
   @apply bg-slate-300 w-[5px]
+}
+
+.buttons {
+  @apply flex gap-6
 }
