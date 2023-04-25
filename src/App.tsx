@@ -139,11 +139,42 @@ const App: Component = () => {
       <div class={styles.header}>
         <div>Sorting Visualizer</div>
         <div class={styles.buttons}>
-          <button onClick={resetArray}>Generate New Array</button>
-          <button onClick={animateBubbleSort}>Bubble Sort</button>
-          <button onClick={animateInsertionSort}>Insertion Sort</button>
-          <button onClick={animateSelectionSort}>Selection Sort</button>
-          <button onClick={animateQuickSort}>Quick Sort</button>
+          <button
+            disabled={isAnimating()}
+            onClick={resetArray}
+            class={styles.button}
+          >
+            Generate New Array
+          </button>
+          <div class={styles.separator}/>
+          <button
+            disabled={isAnimating()}
+            onClick={animateBubbleSort}
+            class={styles.button}
+          >
+            Bubble Sort
+          </button>
+          <button
+            disabled={isAnimating()}
+            onClick={animateInsertionSort}
+            class={styles.button}
+          >
+            Insertion Sort
+          </button>
+          <button
+            disabled={isAnimating()}
+            onClick={animateSelectionSort}
+            class={styles.button}
+          >
+            Selection Sort
+          </button>
+          <button
+            disabled={isAnimating()}
+            onClick={animateQuickSort}
+            class={styles.button}
+          >
+            Quick Sort
+          </button>
         </div>
       </div>
       <div class={styles.bars}>

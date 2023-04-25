@@ -13,3 +13,11 @@
 .buttons {
   @apply flex gap-6
 }
+
+.button {
+  @apply disabled:text-slate-300
+}
+
+.separator {
+  @apply w-1 bg-black h-[50px]
+}
