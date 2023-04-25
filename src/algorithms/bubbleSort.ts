@@ -1,7 +1,4 @@
-type Animation = {
-  colors: { [index: number]: string },
-  array: number[]
-}
+import { Animation } from '../types'
 
 const PRIMARY_COLOR = 'red'
 const SECONDARY_COLOR = 'blue'

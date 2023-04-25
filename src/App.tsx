@@ -4,6 +4,7 @@ import {getMergeSortAnimations} from './algorithms/mergeSort';
 import bubbleSort from './algorithms/bubbleSort'
 import insertionSort from './algorithms/insertionSort'
 import selectionSort from './algorithms/selectionSort'
+import quickSort from './algorithms/quickSort'
 
 import styles from './App.module.css';
 
@@ -69,7 +70,8 @@ const App: Component = () => {
     for(let i = 0; i < animations.length; i++) {
       setTimeout(() => {
         setColor(animations[i].colors)
-        setArray(animations[i].array)
+        if(animations[i].array)
+          setArray(animations[i].array as number[])
       }, ANIMATION_SPEED_MS * i)
     }
   }
@@ -96,6 +98,10 @@ const App: Component = () => {
     }
   }
 
+  const animateQuickSort = () => {
+    const animations = quickSort(array())
+  }
+
   return (
     <div>
       <div class={styles.header}>
@@ -104,6 +110,7 @@ const App: Component = () => {
         <button onClick={animateBubbleSort}>Bubble Sort</button>
         <button onClick={animateInsertionSort}>Insertion Sort</button>
         <button onClick={animateSelectionSort}>SelectionSort Sort</button>
+        <button onClick={animateQuickSort}>Quick Sort</button>
       </div>
       <div class={styles.bars}>
         <Index each={array()}>{(num, i) =>

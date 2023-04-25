@@ -1,21 +1,18 @@
-type Animations = {
-  colors: { [index: number]: string },
-  array?: number[]
-}
+import { Animation } from "../types"
 
 const PRIMARY_COLOR = 'red'
 const SECONDARY_COLOR = 'blue'
 const SORTED_COLOR = 'yellow'
 
-const insertionSort = (array: number[]): Animations[] => {
-  const animations: Animations[] = []
+const insertionSort = (array: number[]): Animation[] => {
+  const Animation: Animation[] = []
   let sorted: { [index: number]: string } = {}
   for(let i = 1; i < array.length; i++) {
     const current = array[i]
     let j = i - 1
     while(j >= 0 && array[j] > current) {
       array[j + 1] = array[j]
-      animations.push({
+      Animation.push({
         colors: {
           ...sorted,
           [i]: PRIMARY_COLOR,
@@ -29,7 +26,7 @@ const insertionSort = (array: number[]): Animations[] => {
     for(let k = 0; k <= i; k++) {
       sorted[k] = SORTED_COLOR
     }
-    animations.push({
+    Animation.push({
       colors: {
         [current]: PRIMARY_COLOR,
         ...sorted
@@ -38,7 +35,7 @@ const insertionSort = (array: number[]): Animations[] => {
     })
   }
   
-  return animations
+  return Animation
 }
 
 export default insertionSort

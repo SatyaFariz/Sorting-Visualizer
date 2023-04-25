@@ -1,14 +1,11 @@
-type Animacions = {
-  colors: { [index: number]: string },
-  array?: number[]
-}
+import { Animation } from "../types"
 
 const PRIMARY_COLOR = 'red'
 const SECONDARY_COLOR = 'blue'
 const SORTED_COLOR = 'purple'
 
-const selectionSort = (array: number[]): Animacions[] => {
-  const animation: Animacions[] = []
+const selectionSort = (array: number[]): Animation[] => {
+  const animation: Animation[] = []
   const sorted: { [index: number]: string } = {}
   for(let i = 0; i < array.length - 1; i++) {
     let min = i
