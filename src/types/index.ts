@@ -9,7 +9,7 @@ export type ColorMap = {
   [index: number]: string
 }
 
-export type AlgorithmMap = {
+export type Algorithm = {
   id: string,
   title: string,
   onClick: JSX.EventHandlerUnion<HTMLButtonElement, MouseEvent>

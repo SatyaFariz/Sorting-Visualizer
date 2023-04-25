@@ -1,10 +1,12 @@
 import type { Component, Signal } from 'solid-js';
 import { createSignal, Index } from 'solid-js';
-import bubbleSort from './algorithms/bubbleSort'
-import insertionSort from './algorithms/insertionSort'
-import selectionSort from './algorithms/selectionSort'
-import quickSort from './algorithms/quickSort'
-import { ColorMap, AlgorithmMap, Animation } from './types';
+import {
+  bubbleSort,
+  insertionSort,
+  selectionSort,
+  quickSort
+} from './algorithms'
+import { ColorMap, Algorithm, Animation } from './types';
 
 import styles from './App.module.css';
 
@@ -46,14 +48,13 @@ const App: Component = () => {
     }
   };
 
-  const alertIfSorted = () => {
-    if(isSorted()) alert('Array is already sorted!')
-  }
-
   const visualize = (algorithm: (array: number[]) => Animation[]) => {
-    alertIfSorted()
+    if(isSorted()) {
+      alert('Array is already sorted!')
+      return
+    }
 
-    if(!isAnimating() && !isSorted()) {
+    if(!isAnimating()) {
       setIsAnimating(true)
       const animations = algorithm(array())
       for(let i = 0; i < animations.length; i++) {
@@ -71,7 +72,7 @@ const App: Component = () => {
     }
   } 
 
-  const algorithms: AlgorithmMap[] = [
+  const algorithms: Algorithm[] = [
     {
       id: 'bubble_sort',
       title: 'Bubble Sort',
