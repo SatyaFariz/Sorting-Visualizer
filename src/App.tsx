@@ -4,7 +4,7 @@ import bubbleSort from './algorithms/bubbleSort'
 import insertionSort from './algorithms/insertionSort'
 import selectionSort from './algorithms/selectionSort'
 import quickSort from './algorithms/quickSort'
-import { ColorMap } from './types';
+import { ColorMap, AlgorithmMap, Animation } from './types';
 
 import styles from './App.module.css';
 
@@ -50,12 +50,12 @@ const App: Component = () => {
     if(isSorted()) alert('Array is already sorted!')
   }
 
-  const animateBubbleSort = () => {
+  const visualize = (algorithm: (array: number[]) => Animation[]) => {
     alertIfSorted()
 
     if(!isAnimating() && !isSorted()) {
       setIsAnimating(true)
-      const animations = bubbleSort(array())
+      const animations = algorithm(array())
       for(let i = 0; i < animations.length; i++) {
         setTimeout(() => {
           setColor(animations[i].colors)
@@ -69,70 +69,30 @@ const App: Component = () => {
         }, ANIMATION_SPEED_MS * i)
       }
     }
-  }
+  } 
 
-  const animateInsertionSort = () => {
-    alertIfSorted()
-
-    if(!isAnimating() && !isSorted()) {
-      setIsAnimating(true)
-      const animations = insertionSort(array())
-      for(let i = 0; i < animations.length; i++) {
-        setTimeout(() => {
-          setColor(animations[i].colors)
-          if(animations[i].array)
-            setArray(animations[i].array as number[])
-          
-          if(i === animations.length - 1) {
-            setIsAnimating(false)
-            setIsSorted(true)
-          }
-        }, ANIMATION_SPEED_MS * i)
-      }
+  const algorithms: AlgorithmMap[] = [
+    {
+      id: 'bubble_sort',
+      title: 'Bubble Sort',
+      onClick: () => visualize(bubbleSort)
+    },
+    {
+      id: 'insertion_sort',
+      title: 'Insertion Sort',
+      onClick: () => visualize(insertionSort)
+    },
+    {
+      id: 'selection_sort',
+      title: 'Selection Sort',
+      onClick: () => visualize(selectionSort)
+    },
+    {
+      id: 'quick_sort',
+      title: 'Quick Sort',
+      onClick: () => visualize(quickSort)
     }
-  }
-
-  const animateSelectionSort = () => {
-    alertIfSorted()
-
-    if(!isAnimating() && !isSorted()) {
-      setIsAnimating(true)
-      const animations = selectionSort(array())
-      for(let i = 0; i < animations.length; i++) {
-        setTimeout(() => {
-          setColor(animations[i].colors)
-          if(animations[i].array)
-            setArray(animations[i].array as number[])
-          
-          if(i === animations.length - 1) {
-            setIsAnimating(false)
-            setIsSorted(true)
-          }
-        }, ANIMATION_SPEED_MS * i)
-      }
-    }
-  }
-
-  const animateQuickSort = () => {
-    alertIfSorted()
-
-    if(!isAnimating() && !isSorted()) {
-      setIsAnimating(true)
-      const animations = quickSort(array())
-      for(let i = 0; i < animations.length; i++) {
-        setTimeout(() => {
-          setColor(animations[i].colors)
-          if(animations[i].array)
-            setArray(animations[i].array as number[])
-
-          if(i === animations.length - 1) {
-            setIsAnimating(false)
-            setIsSorted(true)
-          }
-        }, ANIMATION_SPEED_MS * i)
-      }
-    }
-  }
+  ]
 
   return (
     <div>
@@ -147,34 +107,15 @@ const App: Component = () => {
             Generate New Array
           </button>
           <div class={styles.separator}/>
-          <button
-            disabled={isAnimating()}
-            onClick={animateBubbleSort}
-            class={styles.button}
-          >
-            Bubble Sort
-          </button>
-          <button
-            disabled={isAnimating()}
-            onClick={animateInsertionSort}
-            class={styles.button}
-          >
-            Insertion Sort
-          </button>
-          <button
-            disabled={isAnimating()}
-            onClick={animateSelectionSort}
-            class={styles.button}
-          >
-            Selection Sort
-          </button>
-          <button
-            disabled={isAnimating()}
-            onClick={animateQuickSort}
-            class={styles.button}
-          >
-            Quick Sort
-          </button>
+          <Index each={algorithms}>{(algorithm, i) =>
+            <button
+              disabled={isAnimating()}
+              onClick={algorithm().onClick}
+              class={styles.button}
+            >
+              {algorithm().title}
+            </button>
+          }</Index>
         </div>
       </div>
       <div class={styles.bars}>
