@@ -100,6 +100,13 @@ const App: Component = () => {
 
   const animateQuickSort = () => {
     const animations = quickSort(array())
+    for(let i = 0; i < animations.length; i++) {
+      setTimeout(() => {
+        setColor(animations[i].colors)
+        if(animations[i].array)
+          setArray(animations[i].array as number[])
+      }, ANIMATION_SPEED_MS * i)
+    }
   }
 
   return (
