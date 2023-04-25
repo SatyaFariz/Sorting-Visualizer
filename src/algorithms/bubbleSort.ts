@@ -1,4 +1,4 @@
-import { Animation } from '../types'
+import { Animation, ColorMap } from '../types'
 
 const PRIMARY_COLOR = 'red'
 const SECONDARY_COLOR = 'blue'
@@ -6,7 +6,8 @@ const SORTED_COLOR = 'purple'
 
 const bubbleSort = (array: number[]): Animation[] => {
   let animations: Animation[] = []
-  let sorted: { [index: number]: string } = {}
+  let sorted: ColorMap = {}
+  
   for(let i = 0; i < array.length - 1; i++) {
     for(let j = 0; j < array.length - i - 1; j++) {
       animations.push({

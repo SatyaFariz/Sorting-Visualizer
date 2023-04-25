@@ -1,4 +1,8 @@
 export type Animation = {
-  colors: { [index: number]: string },
+  colors: ColorMap,
   array?: number[]
+}
+
+export type ColorMap = {
+  [index: number]: string
 }

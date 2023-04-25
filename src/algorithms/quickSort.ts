@@ -1,4 +1,4 @@
-import { Animation } from "../types"
+import { Animation, ColorMap } from "../types"
 
 const PRIMARY_COLOR = 'red'
 const SECONDARY_COLOR = 'blue'
@@ -6,14 +6,14 @@ const SORTED_COLOR = 'purple'
 
 const quickSort = (array: number[]): Animation[] => {
   const animations: Animation[] = []
-  const sorted: { [index: number]: string } = {}
+  const sorted: ColorMap = {}
 
   qs(array, 0, array.length - 1, animations, sorted)
 
   return animations
 }
 
-const qs = (array: number[], leftIdx: number, rightIdx: number, animations: Animation[], sorted: { [index: number]: string }) => {
+const qs = (array: number[], leftIdx: number, rightIdx: number, animations: Animation[], sorted: ColorMap) => {
   if(leftIdx >= rightIdx) return
 
   const pivotIdx: number = partition(array, leftIdx, rightIdx, animations, sorted)
@@ -32,7 +32,7 @@ const qs = (array: number[], leftIdx: number, rightIdx: number, animations: Anim
   })
 }
 
-const partition = (array: number[], leftIdx: number, rightIdx: number, animations: Animation[], sorted: { [index: number]: string }): number => {
+const partition = (array: number[], leftIdx: number, rightIdx: number, animations: Animation[], sorted: ColorMap): number => {
   const pivot = array[rightIdx]
 
   let i = leftIdx - 1
@@ -61,24 +61,25 @@ const partition = (array: number[], leftIdx: number, rightIdx: number, animation
     }
   }
   
-  if(i + 1 !== rightIdx) {
+  const k = i + 1
+  if(k !== rightIdx) {
     animations.push({
       colors: {
         ...sorted,
-        [i + 1]: PRIMARY_COLOR,
+        [k]: PRIMARY_COLOR,
         [rightIdx]: SECONDARY_COLOR
       },
       array: array.slice()
     })
 
-    const temp = array[i + 1]
-    array[i + 1] = array[rightIdx]
+    const temp = array[k]
+    array[k] = array[rightIdx]
     array[rightIdx] = temp
 
     animations.push({
       colors: {
         ...sorted,
-        [i + 1]: SECONDARY_COLOR,
+        [k]: SECONDARY_COLOR,
         [rightIdx]: PRIMARY_COLOR
       },
       array: array.slice()
@@ -86,7 +87,7 @@ const partition = (array: number[], leftIdx: number, rightIdx: number, animation
   }
   
 
-  return i + 1
+  return k
 }
 
 export default quickSort

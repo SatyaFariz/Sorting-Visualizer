@@ -1,4 +1,4 @@
-import { Animation } from "../types"
+import { Animation, ColorMap } from "../types"
 
 const PRIMARY_COLOR = 'red'
 const SECONDARY_COLOR = 'blue'
@@ -6,7 +6,7 @@ const SORTED_COLOR = 'yellow'
 
 const insertionSort = (array: number[]): Animation[] => {
   const Animation: Animation[] = []
-  let sorted: { [index: number]: string } = {}
+  let sorted: ColorMap = {}
   for(let i = 1; i < array.length; i++) {
     const current = array[i]
     let j = i - 1
