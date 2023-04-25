@@ -31,52 +31,76 @@ function generateArray(): number[] {
 const App: Component = () => {
   const [array, setArray]: Signal<number[]> = createSignal(generateArray());
   const [color, setColor]: Signal<ColorMap> = createSignal({});
+  const [isAnimating, setIsAnimating]: Signal<boolean> = createSignal(false)
+
   const resetArray = () => {
-    setArray(generateArray())
-    setColor({})
+    if(!isAnimating()) {
+      setArray(generateArray())
+      setColor({})
+    }
   };
 
   const animateBubbleSort = () => {
-    const animations = bubbleSort(array())
-    for(let i = 0; i < animations.length; i++) {
-      setTimeout(() => {
-        setColor(animations[i].colors)
-        if(animations[i].array)
-          setArray(animations[i].array as number[])
-      }, ANIMATION_SPEED_MS * i)
+    if(!isAnimating()) {
+      setIsAnimating(true)
+      const animations = bubbleSort(array())
+      for(let i = 0; i < animations.length; i++) {
+        setTimeout(() => {
+          setColor(animations[i].colors)
+          if(animations[i].array)
+            setArray(animations[i].array as number[])
+
+          if(i === animations.length - 1) setIsAnimating(false)
+        }, ANIMATION_SPEED_MS * i)
+      }
     }
   }
 
   const animateInsertionSort = () => {
-    const animations = insertionSort(array())
-    for(let i = 0; i < animations.length; i++) {
-      setTimeout(() => {
-        setColor(animations[i].colors)
-        if(animations[i].array)
-          setArray(animations[i].array as number[])
-      }, ANIMATION_SPEED_MS * i)
+    if(!isAnimating()) {
+      setIsAnimating(true)
+      const animations = insertionSort(array())
+      for(let i = 0; i < animations.length; i++) {
+        setTimeout(() => {
+          setColor(animations[i].colors)
+          if(animations[i].array)
+            setArray(animations[i].array as number[])
+          
+          if(i === animations.length - 1) setIsAnimating(false)
+        }, ANIMATION_SPEED_MS * i)
+      }
     }
   }
 
   const animateSelectionSort = () => {
-    const animations = selectionSort(array())
-    for(let i = 0; i < animations.length; i++) {
-      setTimeout(() => {
-        setColor(animations[i].colors)
-        if(animations[i].array)
-          setArray(animations[i].array as number[])
-      }, ANIMATION_SPEED_MS * i)
+    if(!isAnimating()) {
+      setIsAnimating(true)
+      const animations = selectionSort(array())
+      for(let i = 0; i < animations.length; i++) {
+        setTimeout(() => {
+          setColor(animations[i].colors)
+          if(animations[i].array)
+            setArray(animations[i].array as number[])
+          
+          if(i === animations.length - 1) setIsAnimating(false)
+        }, ANIMATION_SPEED_MS * i)
+      }
     }
   }
 
   const animateQuickSort = () => {
-    const animations = quickSort(array())
-    for(let i = 0; i < animations.length; i++) {
-      setTimeout(() => {
-        setColor(animations[i].colors)
-        if(animations[i].array)
-          setArray(animations[i].array as number[])
-      }, ANIMATION_SPEED_MS * i)
+    if(!isAnimating()) {
+      setIsAnimating(true)
+      const animations = quickSort(array())
+      for(let i = 0; i < animations.length; i++) {
+        setTimeout(() => {
+          setColor(animations[i].colors)
+          if(animations[i].array)
+            setArray(animations[i].array as number[])
+
+          if(i === animations.length - 1) setIsAnimating(false)
+        }, ANIMATION_SPEED_MS * i)
+      }
     }
   }
 
