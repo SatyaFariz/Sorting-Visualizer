@@ -8,18 +8,18 @@ const quickSort = (array: number[]): Animation[] => {
   const animations: Animation[] = []
   const sorted: ColorMap = {}
 
-  qs(array, 0, array.length - 1, animations, sorted)
+  quickSortHelper(array, 0, array.length - 1, animations, sorted)
 
   return animations
 }
 
-const qs = (array: number[], leftIdx: number, rightIdx: number, animations: Animation[], sorted: ColorMap) => {
+const quickSortHelper = (array: number[], leftIdx: number, rightIdx: number, animations: Animation[], sorted: ColorMap) => {
   if(leftIdx >= rightIdx) return
 
   const pivotIdx: number = partition(array, leftIdx, rightIdx, animations, sorted)
 
-  qs(array, leftIdx, pivotIdx - 1, animations, sorted)
-  qs(array, pivotIdx + 1, rightIdx, animations, sorted)
+  quickSortHelper(array, leftIdx, pivotIdx - 1, animations, sorted)
+  quickSortHelper(array, pivotIdx + 1, rightIdx, animations, sorted)
   for(let i = rightIdx; i >= 0; i--) {
     sorted[i] = SORTED_COLOR
     sorted[pivotIdx] = SORTED_COLOR
