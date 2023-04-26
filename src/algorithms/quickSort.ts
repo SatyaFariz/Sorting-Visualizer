@@ -21,8 +21,9 @@ const quickSortHelper = (array: number[], leftIdx: number, rightIdx: number, ani
   quickSortHelper(array, leftIdx, pivotIdx - 1, animations, sorted)
   quickSortHelper(array, pivotIdx + 1, rightIdx, animations, sorted)
   for(let i = rightIdx; i >= 0; i--) {
+    if(sorted[i]) break
+
     sorted[i] = SORTED_COLOR
-    sorted[pivotIdx] = SORTED_COLOR
   }
   animations.push({
     colors: {
