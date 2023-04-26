@@ -78,17 +78,25 @@ const App: Component = () => {
       onClick: (i) => () => visualize(i, bubbleSort)
     },
     {
-      title: 'Insertion Sort',
-      onClick: (i) => () => visualize(i, insertionSort)
-    },
-    {
       title: 'Selection Sort',
       onClick: (i) => () => visualize(i, selectionSort)
     },
     {
+      title: 'Insertion Sort',
+      onClick: (i) => () => visualize(i, insertionSort)
+    },
+    {
       title: 'Quick Sort',
       onClick: (i) => () => visualize(i, quickSort)
-    }
+    },
+    {
+      title: 'Merge Sort',
+      onClick: (i) => () => visualize(i, insertionSort)
+    },
+    {
+      title: 'Heap Sort',
+      onClick: (i) => () => visualize(i, insertionSort)
+    },
   ]
 
   return (
