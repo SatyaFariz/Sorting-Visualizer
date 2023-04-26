@@ -15,7 +15,12 @@
 }
 
 .button {
-  @apply disabled:text-slate-300
+  @apply disabled:text-slate-300 hover:text-orange-400
+}
+
+.buttonActive {
+  @apply button;
+  @apply disabled:text-orange-300
 }
 
 .separator {

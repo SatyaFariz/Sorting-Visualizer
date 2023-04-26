@@ -37,25 +37,25 @@ function generateArray(): number[] {
 const App: Component = () => {
   const [array, setArray]: Signal<number[]> = createSignal(generateArray());
   const [color, setColor]: Signal<ColorMap> = createSignal({});
-  const [isAnimating, setIsAnimating]: Signal<boolean> = createSignal(false)
+  const [isAnimating, setIsAnimating]: Signal<number> = createSignal(-1)
   const [isSorted, setIsSorted]: Signal<boolean> = createSignal(false)
 
   const resetArray = () => {
-    if(!isAnimating()) {
+    if(isAnimating() < 0) {
       setIsSorted(false)
       setArray(generateArray())
       setColor({})
     }
   };
 
-  const visualize = (algorithm: (array: number[]) => Animation[]) => {
+  const visualize = (i: number, algorithm: (array: number[]) => Animation[]) => {
     if(isSorted()) {
       alert('Array is already sorted!')
       return
     }
 
-    if(!isAnimating()) {
-      setIsAnimating(true)
+    if(isAnimating() < 0) {
+      setIsAnimating(i)
       const animations = algorithm(array())
       for(let i = 0; i < animations.length; i++) {
         setTimeout(() => {
@@ -64,7 +64,7 @@ const App: Component = () => {
             setArray(animations[i].array as number[])
 
           if(i === animations.length - 1) {
-            setIsAnimating(false)
+            setIsAnimating(-1)
             setIsSorted(true)
           }
         }, ANIMATION_SPEED_MS * i)
@@ -74,24 +74,20 @@ const App: Component = () => {
 
   const algorithms: Algorithm[] = [
     {
-      id: 'bubble_sort',
       title: 'Bubble Sort',
-      onClick: () => visualize(bubbleSort)
+      onClick: (i) => () => visualize(i, bubbleSort)
     },
     {
-      id: 'insertion_sort',
       title: 'Insertion Sort',
-      onClick: () => visualize(insertionSort)
+      onClick: (i) => () => visualize(i, insertionSort)
     },
     {
-      id: 'selection_sort',
       title: 'Selection Sort',
-      onClick: () => visualize(selectionSort)
+      onClick: (i) => () => visualize(i, selectionSort)
     },
     {
-      id: 'quick_sort',
       title: 'Quick Sort',
-      onClick: () => visualize(quickSort)
+      onClick: (i) => () => visualize(i, quickSort)
     }
   ]
 
@@ -101,7 +97,7 @@ const App: Component = () => {
         <div>Sorting Visualizer</div>
         <div class={styles.buttons}>
           <button
-            disabled={isAnimating()}
+            disabled={isAnimating() >= 0}
             onClick={resetArray}
             class={styles.button}
           >
@@ -110,9 +106,9 @@ const App: Component = () => {
           <div class={styles.separator}/>
           <Index each={algorithms}>{(algorithm, i) =>
             <button
-              disabled={isAnimating()}
-              onClick={algorithm().onClick}
-              class={styles.button}
+              disabled={isAnimating() >= 0}
+              onClick={algorithm().onClick(i)}
+              class={isAnimating() === i ? styles.buttonActive : styles.button}
             >
               {algorithm().title}
             </button>

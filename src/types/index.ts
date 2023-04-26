@@ -10,7 +10,6 @@ export type ColorMap = {
 }
 
 export type Algorithm = {
-  id: string,
   title: string,
-  onClick: JSX.EventHandlerUnion<HTMLButtonElement, MouseEvent>
+  onClick: (index: number) => JSX.EventHandlerUnion<HTMLButtonElement, MouseEvent>
 }
