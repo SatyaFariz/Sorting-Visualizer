@@ -11,11 +11,11 @@
 }
 
 .buttons {
-  @apply flex gap-6
+  @apply flex gap-8
 }
 
 .button {
-  @apply disabled:text-slate-300 hover:text-orange-400
+  @apply disabled:text-slate-300 hover:text-orange-400 text-base
 }
 
 .buttonActive {
