@@ -1,5 +1,5 @@
 import type { Component, Signal } from 'solid-js';
-import { createSignal, Index, createMemo } from 'solid-js';
+import { createSignal, Index } from 'solid-js';
 import {
   bubbleSort,
   insertionSort,
@@ -70,7 +70,7 @@ const App: Component = () => {
         }, ANIMATION_SPEED_MS * i)
       }
     }
-  } 
+  }
 
   const algorithms: Algorithm[] = [
     {
