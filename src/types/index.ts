@@ -9,6 +9,11 @@ export type ColorMap = {
   [index: number]: string
 }
 
+export type AuxiliaryArrayItem = {
+  value: number,
+  originalIndex: number
+}
+
 export type Algorithm = {
   title: string,
   onClick: (index: number) => JSX.EventHandlerUnion<HTMLButtonElement, MouseEvent>
