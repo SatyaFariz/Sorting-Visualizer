@@ -4,7 +4,8 @@ import {
   bubbleSort,
   insertionSort,
   selectionSort,
-  quickSort
+  quickSort,
+  mergeSort
 } from './algorithms'
 import { ColorMap, Algorithm, Animation } from './types';
 
@@ -91,7 +92,7 @@ const App: Component = () => {
     },
     {
       title: 'Merge Sort',
-      onClick: (i) => () => visualize(i, insertionSort)
+      onClick: (i) => () => visualize(i, mergeSort)
     },
     {
       title: 'Heap Sort',
