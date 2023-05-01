@@ -1,8 +1,11 @@
 import { Animation, ColorMap } from '../types'
 
-const PRIMARY_COLOR = 'red'
-const SECONDARY_COLOR = 'blue'
-const SORTED_COLOR = 'yellow'
+import {
+  BAR_COLOR_SORTED,
+  BAR_COLOR_PRIMARY,
+  BAR_COLOR_TERTIARY
+} from '../constants'
+
 
 const insertionSort = (array: number[]): Animation[] => {
   const Animation: Animation[] = []
@@ -15,8 +18,8 @@ const insertionSort = (array: number[]): Animation[] => {
       Animation.push({
         colors: {
           ...sorted,
-          [i]: PRIMARY_COLOR,
-          [j]: SECONDARY_COLOR,
+          [i]: BAR_COLOR_PRIMARY,
+          [j]: BAR_COLOR_TERTIARY,
         }
       })
       j--
@@ -24,11 +27,11 @@ const insertionSort = (array: number[]): Animation[] => {
 
     array[j + 1] = current
     for(let k = 0; k <= i; k++) {
-      sorted[k] = SORTED_COLOR
+      sorted[k] = BAR_COLOR_SORTED
     }
     Animation.push({
       colors: {
-        [current]: PRIMARY_COLOR,
+        [current]: BAR_COLOR_PRIMARY,
         ...sorted
       },
       array: array.slice()

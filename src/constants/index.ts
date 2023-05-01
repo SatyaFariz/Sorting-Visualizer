@@ -5,5 +5,5 @@ export const MIN_BAR_HEIGHT = 5
 export const BAR_COLOR_SORTED = '#4286f4';
 export const BAR_COLOR_DEFAULT = '#40d5e0'
 export const BAR_COLOR_PRIMARY = '#ff3b30'
-export const BAR_COLOR_TERTIARY = '#b55ce8'
+export const BAR_COLOR_TERTIARY = '#fde047'
 export const BAR_COLOR_SECONDARY = '#8b5cf6'
