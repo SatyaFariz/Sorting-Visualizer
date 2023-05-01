@@ -1,4 +1,4 @@
-import { Animation, ColorMap } from "../types"
+import { Animation, ColorMap } from '../types'
 
 const PRIMARY_COLOR = 'red'
 const SECONDARY_COLOR = 'blue'

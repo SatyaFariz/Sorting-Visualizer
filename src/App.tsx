@@ -129,8 +129,8 @@ const App: Component = () => {
           <div
             class={styles.bar}
             style={{
-              "background-color": color()[i] || BAR_COLOR,
-              "height": `${num()}px`
+              'background-color': color()[i] || BAR_COLOR,
+              'height': `${num()}px`
             }}
           >
           </div>
