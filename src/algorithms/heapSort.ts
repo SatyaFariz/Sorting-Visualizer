@@ -1,8 +1,10 @@
 import { Animation, ColorMap } from '../types'
+import {
+  BAR_COLOR_SORTED,
+  BAR_COLOR_PRIMARY,
+  BAR_COLOR_SECONDARY
+} from '../constants'
 
-const PRIMARY_COLOR = 'red'
-const SECONDARY_COLOR = 'blue'
-const SORTED_COLOR = 'purple'
 
 const heapSort = (array: number[]): Animation[] => {
   const sorted: ColorMap = {}
@@ -17,12 +19,12 @@ const heapSort = (array: number[]): Animation[] => {
   }
 
   while(lastChild >= 0) {
-    sorted[lastChild] = SORTED_COLOR
+    sorted[lastChild] = BAR_COLOR_SORTED
     animations.push({
       colors: {
         ...sorted,
-        [0]: PRIMARY_COLOR,
-        [lastChild]: SECONDARY_COLOR
+        [0]: BAR_COLOR_PRIMARY,
+        [lastChild]: BAR_COLOR_SECONDARY
       }
     });
 
@@ -31,8 +33,8 @@ const heapSort = (array: number[]): Animation[] => {
     animations.push({
       colors: {
         ...sorted,
-        [0]: SECONDARY_COLOR,
-        [lastChild]: PRIMARY_COLOR
+        [0]: BAR_COLOR_SECONDARY,
+        [lastChild]: BAR_COLOR_PRIMARY
       },
       array: array.slice()
     })
@@ -67,8 +69,8 @@ const heapify = (array: number[], length: number, parentIdx: number, animations:
     animations.push({
       colors: {
         ...sorted,
-        [parentIdx]: PRIMARY_COLOR,
-        [largest]: SECONDARY_COLOR
+        [parentIdx]: BAR_COLOR_PRIMARY,
+        [largest]: BAR_COLOR_SECONDARY
       }
     });
 
@@ -76,8 +78,8 @@ const heapify = (array: number[], length: number, parentIdx: number, animations:
     animations.push({
       colors: {
         ...sorted,
-        [parentIdx]: SECONDARY_COLOR,
-        [largest]: PRIMARY_COLOR
+        [parentIdx]: BAR_COLOR_SECONDARY,
+        [largest]: BAR_COLOR_PRIMARY
       },
       array: array.slice()
     })
