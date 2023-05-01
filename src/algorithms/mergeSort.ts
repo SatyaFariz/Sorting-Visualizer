@@ -3,6 +3,8 @@ import { AuxiliaryArrayItem } from '../types'
 
 const PRIMARY_COLOR = 'blue'
 const SORTED_COLOR = 'purple'
+const COLOR_ONE = 'pink'
+const COLOR_TWO = 'yellow'
 
 const mergeSort = (array: number[]): Animation[] => {
   const animations: Animation[] = []
@@ -38,6 +40,15 @@ const merge = (originalArray: number[], array: AuxiliaryArrayItem[], leftHalf: A
   const leftSize = leftHalf.length
   const rightSize = rightHalf.length
 
+  const colors: ColorMap = {}
+  for(let i = 0; i < leftHalf.length; i++) {
+    colors[leftHalf[i].originalIndex] = COLOR_ONE
+  }
+
+  for(let i = 0; i < rightHalf.length; i++) {
+    colors[rightHalf[i].originalIndex] = COLOR_TWO
+  }
+
   let i = 0, j = 0, k = 0
 
   while(i < leftSize && j < rightSize) {
@@ -46,8 +57,8 @@ const merge = (originalArray: number[], array: AuxiliaryArrayItem[], leftHalf: A
 
       animations.push({
         colors: {
-          [temp.originalIndex]: PRIMARY_COLOR,
-          [leftHalf[i].originalIndex]: PRIMARY_COLOR
+          ...colors,
+          [temp.originalIndex]: PRIMARY_COLOR
         }
       })
 
@@ -56,8 +67,8 @@ const merge = (originalArray: number[], array: AuxiliaryArrayItem[], leftHalf: A
 
       animations.push({
         colors: {
-          [temp.originalIndex]: PRIMARY_COLOR,
-          [leftHalf[i].originalIndex]: PRIMARY_COLOR
+          ...colors,
+          [temp.originalIndex]: PRIMARY_COLOR
         },
         array: originalArray.slice()
       })
@@ -65,8 +76,8 @@ const merge = (originalArray: number[], array: AuxiliaryArrayItem[], leftHalf: A
     } else {
       animations.push({
         colors: {
-          [temp.originalIndex]: PRIMARY_COLOR,
-          [rightHalf[j].originalIndex]: PRIMARY_COLOR
+          ...colors,
+          [temp.originalIndex]: PRIMARY_COLOR
         }
       })
 
@@ -74,8 +85,8 @@ const merge = (originalArray: number[], array: AuxiliaryArrayItem[], leftHalf: A
       originalArray[temp.originalIndex] = rightHalf[j].value
       animations.push({
         colors: {
-          [temp.originalIndex]: PRIMARY_COLOR,
-          [rightHalf[j].originalIndex]: PRIMARY_COLOR
+          ...colors,
+          [temp.originalIndex]: PRIMARY_COLOR
         },
         array: originalArray.slice()
       })
@@ -89,16 +100,16 @@ const merge = (originalArray: number[], array: AuxiliaryArrayItem[], leftHalf: A
     const temp = array[k]
     animations.push({
       colors: {
-        [temp.originalIndex]: PRIMARY_COLOR,
-        [leftHalf[i].originalIndex]: PRIMARY_COLOR
+        ...colors,
+        [temp.originalIndex]: PRIMARY_COLOR
       }
     })
     array[k] = leftHalf[i]
     originalArray[temp.originalIndex] = leftHalf[i].value
     animations.push({
       colors: {
-        [temp.originalIndex]: PRIMARY_COLOR,
-        [leftHalf[i].originalIndex]: PRIMARY_COLOR
+        ...colors,
+        [temp.originalIndex]: PRIMARY_COLOR
       },
       array: originalArray.slice()
     })
@@ -110,16 +121,16 @@ const merge = (originalArray: number[], array: AuxiliaryArrayItem[], leftHalf: A
     const temp = array[k]
     animations.push({
       colors: {
-        [temp.originalIndex]: PRIMARY_COLOR,
-        [rightHalf[j].originalIndex]: PRIMARY_COLOR
+        ...colors,
+        [temp.originalIndex]: PRIMARY_COLOR
       }
     })
     array[k] = rightHalf[j]
     originalArray[temp.originalIndex] = rightHalf[j].value
     animations.push({
       colors: {
-        [temp.originalIndex]: PRIMARY_COLOR,
-        [rightHalf[j].originalIndex]: PRIMARY_COLOR
+        ...colors,
+        [temp.originalIndex]: PRIMARY_COLOR
       },
       array: originalArray.slice()
     })
