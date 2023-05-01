@@ -3,10 +3,11 @@ import { AuxiliaryArrayItem } from '../types'
 
 import {
   BAR_COLOR_SORTED,
-  BAR_COLOR_PRIMARY,
-  BAR_COLOR_SECONDARY,
-  BAR_COLOR_TERTIARY
+  BAR_COLOR_PRIMARY
 } from '../constants'
+
+const COLOR_ONE = '#8ab4f8'
+const COLOR_TWO = '#bfa4fa'
 
 
 const mergeSort = (array: number[]): Animation[] => {
@@ -45,11 +46,11 @@ const merge = (originalArray: number[], array: AuxiliaryArrayItem[], leftHalf: A
 
   const colors: ColorMap = {}
   for(let i = 0; i < leftHalf.length; i++) {
-    colors[leftHalf[i].originalIndex] = BAR_COLOR_SECONDARY
+    colors[leftHalf[i].originalIndex] = COLOR_TWO
   }
 
   for(let i = 0; i < rightHalf.length; i++) {
-    colors[rightHalf[i].originalIndex] = BAR_COLOR_TERTIARY
+    colors[rightHalf[i].originalIndex] = COLOR_ONE
   }
 
   let i = 0, j = 0, k = 0
