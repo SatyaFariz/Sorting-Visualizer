@@ -10,11 +10,11 @@ const mergeSort = (array: number[]): Animation[] => {
   const animations: Animation[] = []
   const sorted: ColorMap = {}
 
-  const arrayItems: AuxiliaryArrayItem[] = array.map((value, i) => ({
+  const auxiliaryArray: AuxiliaryArrayItem[] = array.map((value, i) => ({
     value,
     originalIndex: i
   }))
-  mergeSortHelper(array, arrayItems, animations)
+  mergeSortHelper(array, auxiliaryArray, animations)
 
   for(let i = 0; i < array.length; i++) sorted[i] = SORTED_COLOR
 
