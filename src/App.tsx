@@ -5,7 +5,8 @@ import {
   insertionSort,
   selectionSort,
   quickSort,
-  mergeSort
+  mergeSort,
+  heapSort
 } from './algorithms'
 import { ColorMap, Algorithm, Animation } from './types';
 import Logo from './components/Logo'
@@ -97,7 +98,7 @@ const App: Component = () => {
     },
     {
       title: 'Heap Sort',
-      onClick: (i) => () => visualize(i, insertionSort)
+      onClick: (i) => () => visualize(i, heapSort)
     },
   ]
 
