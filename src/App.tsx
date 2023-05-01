@@ -15,7 +15,7 @@ import styles from './App.module.css';
 
 import {
   NUMBER_OF_BARS,
-  BAR_COLOR,
+  BAR_COLOR_DEFAULT,
   MAX_BAR_HEIGHT,
   MIN_BAR_HEIGHT,
   ANIMATION_SPEED_MS
@@ -133,7 +133,7 @@ const App: Component = () => {
           <div
             class={styles.bar}
             style={{
-              'background-color': color()[i] || BAR_COLOR,
+              'background-color': color()[i] || BAR_COLOR_DEFAULT,
               'height': `${num()}px`
             }}
           >
