@@ -1,8 +1,10 @@
 import { Animation, ColorMap } from '../types'
 
-const PRIMARY_COLOR = 'red'
-const SECONDARY_COLOR = 'blue'
-const SORTED_COLOR = 'purple'
+import {
+  BAR_COLOR_SORTED,
+  BAR_COLOR_PRIMARY,
+  BAR_COLOR_SECONDARY
+} from '../constants'
 
 const quickSort = (array: number[]): Animation[] => {
   const animations: Animation[] = []
@@ -23,7 +25,7 @@ const quickSortHelper = (array: number[], leftIdx: number, rightIdx: number, ani
   for(let i = rightIdx; i >= 0; i--) {
     if(sorted[i]) break
 
-    sorted[i] = SORTED_COLOR
+    sorted[i] = BAR_COLOR_SORTED
   }
   animations.push({
     colors: {
@@ -43,8 +45,8 @@ const partition = (array: number[], leftIdx: number, rightIdx: number, animation
       animations.push({
         colors: {
           ...sorted,
-          [i]: PRIMARY_COLOR,
-          [j]: SECONDARY_COLOR
+          [i]: BAR_COLOR_PRIMARY,
+          [j]: BAR_COLOR_SECONDARY
         },
         array: array.slice()
       })
@@ -54,8 +56,8 @@ const partition = (array: number[], leftIdx: number, rightIdx: number, animation
       animations.push({
         colors: {
           ...sorted,
-          [i]: SECONDARY_COLOR,
-          [j]: PRIMARY_COLOR
+          [i]: BAR_COLOR_SECONDARY,
+          [j]: BAR_COLOR_PRIMARY
         },
         array: array.slice()
       })
@@ -67,8 +69,8 @@ const partition = (array: number[], leftIdx: number, rightIdx: number, animation
     animations.push({
       colors: {
         ...sorted,
-        [k]: PRIMARY_COLOR,
-        [rightIdx]: SECONDARY_COLOR
+        [k]: BAR_COLOR_PRIMARY,
+        [rightIdx]: BAR_COLOR_SECONDARY
       },
       array: array.slice()
     })
@@ -80,8 +82,8 @@ const partition = (array: number[], leftIdx: number, rightIdx: number, animation
     animations.push({
       colors: {
         ...sorted,
-        [k]: SECONDARY_COLOR,
-        [rightIdx]: PRIMARY_COLOR
+        [k]: BAR_COLOR_SECONDARY,
+        [rightIdx]: BAR_COLOR_PRIMARY
       },
       array: array.slice()
     })
