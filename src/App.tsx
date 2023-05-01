@@ -8,6 +8,7 @@ import {
   mergeSort
 } from './algorithms'
 import { ColorMap, Algorithm, Animation } from './types';
+import Logo from './components/Logo'
 
 import styles from './App.module.css';
 
@@ -103,7 +104,9 @@ const App: Component = () => {
   return (
     <div>
       <div class={styles.header}>
-        <div>Sorting Visualizer</div>
+        <div>
+          <Logo/>
+        </div>
         <div class={styles.buttons}>
           <button
             disabled={isAnimating() >= 0}

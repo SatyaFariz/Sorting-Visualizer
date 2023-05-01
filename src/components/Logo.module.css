@@ -1,0 +1,11 @@
+.icon {
+  @apply h-[32px]
+}
+
+.text {
+  @apply h-[24px] leading-[24px]
+}
+
+.container {
+  @apply flex items-end gap-3
+}
