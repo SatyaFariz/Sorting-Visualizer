@@ -1,5 +1,5 @@
 .header {
-  @apply h-[100px] bg-[#37445a] text-white flex items-center justify-between px-8
+  @apply h-[100px] bg-[#37445a] text-white flex items-center justify-between px-8 overflow-scroll
 }
 
 .bars {
