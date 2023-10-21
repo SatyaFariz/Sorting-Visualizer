@@ -1,5 +1,5 @@
 .icon {
-  @apply h-[32px]
+  @apply h-[32px] scale-x-[-1] rotate-180
 }
 
 .text {
@@ -7,5 +7,5 @@
 }
 
 .container {
-  @apply flex items-end gap-3
+  @apply flex items-center gap-3
 }
