@@ -1,10 +1,9 @@
-import { Animation, ColorMap } from '../types'
-import { AuxiliaryArrayItem } from '../types'
+import { Animation, ColorMap, AuxiliaryArrayItem } from '@/types'
 
 import {
   BAR_COLOR_SORTED,
   BAR_COLOR_PRIMARY
-} from '../constants'
+} from '@/constants'
 
 const COLOR_ONE = '#8ab4f8'
 const COLOR_TWO = '#bfa4fa'

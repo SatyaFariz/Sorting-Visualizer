@@ -1,5 +1,5 @@
-import type { Component, Signal } from 'solid-js';
-import { createSignal, Index } from 'solid-js';
+import type { Component, Signal } from 'solid-js'
+import { createSignal, Index } from 'solid-js'
 import {
   bubbleSort,
   insertionSort,
@@ -7,11 +7,11 @@ import {
   quickSort,
   mergeSort,
   heapSort
-} from './algorithms'
-import { ColorMap, Algorithm, Animation } from './types';
-import Logo from './components/Logo'
+} from '@/algorithms'
+import { ColorMap, Algorithm, Animation } from '@/types'
+import Logo from '@/components/Logo'
 
-import styles from './App.module.css';
+import styles from '@/App.module.css'
 
 import {
   NUMBER_OF_BARS,
@@ -19,27 +19,27 @@ import {
   MAX_BAR_HEIGHT,
   MIN_BAR_HEIGHT,
   ANIMATION_SPEED_MS
-} from './constants'
+} from '@/constants'
 
 
 
 // From https://stackoverflow.com/questions/4959975/generate-random-number-between-two-numbers-in-javascript
 function randomInt(min: number, max: number): number {
   // min and max included
-  return Math.floor(Math.random() * (max - min + 1) + min);
+  return Math.floor(Math.random() * (max - min + 1) + min)
 }
 
 function generateArray(): number[] {
-  const array = [];
+  const array = []
   for (let i = 0; i < NUMBER_OF_BARS; i++) {
-    array.push(randomInt(MIN_BAR_HEIGHT, MAX_BAR_HEIGHT));
+    array.push(randomInt(MIN_BAR_HEIGHT, MAX_BAR_HEIGHT))
   }
   return array
 }
 
 const App: Component = () => {
-  const [array, setArray]: Signal<number[]> = createSignal(generateArray());
-  const [color, setColor]: Signal<ColorMap> = createSignal({});
+  const [array, setArray]: Signal<number[]> = createSignal(generateArray())
+  const [color, setColor]: Signal<ColorMap> = createSignal({})
   const [isAnimating, setIsAnimating]: Signal<number> = createSignal(-1)
   const [isSorted, setIsSorted]: Signal<boolean> = createSignal(false)
 
@@ -49,7 +49,7 @@ const App: Component = () => {
       setArray(generateArray())
       setColor({})
     }
-  };
+  }
 
   const visualize = (i: number, algorithm: (array: number[]) => Animation[]) => {
     if(isSorted()) {
@@ -141,7 +141,7 @@ const App: Component = () => {
         }</Index>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default App;
+export default App

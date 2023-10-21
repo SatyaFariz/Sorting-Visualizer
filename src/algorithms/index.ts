@@ -1,9 +1,9 @@
-import bubbleSort from './bubbleSort';
-import insertionSort from './insertionSort';
-import quickSort from './quickSort';
-import selectionSort from './selectionSort';
-import mergeSort from './mergeSort'
-import heapSort from './heapSort';
+import bubbleSort from '@/algorithms/bubbleSort'
+import insertionSort from '@/algorithms/insertionSort'
+import quickSort from '@/algorithms/quickSort'
+import selectionSort from '@/algorithms/selectionSort'
+import mergeSort from '@/algorithms/mergeSort'
+import heapSort from '@/algorithms/heapSort'
 
 export {
   bubbleSort,

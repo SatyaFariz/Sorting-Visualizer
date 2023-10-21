@@ -1,5 +1,5 @@
 import type { Component } from 'solid-js'
-import styles from './Logo.module.css';
+import styles from '@/components/Logo.module.css'
 
 const Logo: Component = () => {
   return (

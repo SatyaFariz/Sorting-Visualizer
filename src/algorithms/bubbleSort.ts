@@ -1,10 +1,10 @@
-import { Animation, ColorMap } from '../types'
+import { Animation, ColorMap } from '@/types'
 
 import {
   BAR_COLOR_SORTED,
   BAR_COLOR_PRIMARY,
   BAR_COLOR_SECONDARY
-} from '../constants'
+} from '@/constants'
 
 const bubbleSort = (array: number[]): Animation[] => {
   let animations: Animation[] = []

@@ -1,10 +1,10 @@
-import { Animation, ColorMap } from '../types'
+import { Animation, ColorMap } from '@/types'
 
 import {
   BAR_COLOR_SORTED,
   BAR_COLOR_PRIMARY,
   BAR_COLOR_TERTIARY
-} from '../constants'
+} from '@/constants'
 
 
 const insertionSort = (array: number[]): Animation[] => {
